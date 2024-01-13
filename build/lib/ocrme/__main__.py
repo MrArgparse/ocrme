@@ -10,13 +10,15 @@ import tomllib
 def parse_ocrme() -> argparse.Namespace:
 	parser = argparse.ArgumentParser(prog='ocrme', description='OCR tool')
 	parser.add_argument('images', nargs='+', type=str, help='Images to process')
-	parser.add_argument('--text', action='store_true', help='Outputs to a text file')
+	parser.add_argument('--silent', '-s', action='store_true', help='Prevents the text from being printed to the console')
+	parser.add_argument('--text', '-t', action='store_true', help='Outputs to a text file')
 
 	return parser.parse_args()
 
 @dataclasses.dataclass(kw_only=True)
 class DefaultConfig:
-	TesseractPath: str = 'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'
+	TesseractPathLinux: str = '/usr/bin/tesseract'
+	TesseractPathWindows: str = 'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'
 	OutputPath: str = os.path.expanduser('~')
 	Extensions: list[str] = dataclasses.field(default_factory=list)
 
@@ -68,7 +70,14 @@ def main() -> None:
 		with open(config_file, 'rb') as f:
 			config = tomllib.load(f)
 
-		path_to_tesseract = config['TesseractPath']
+		match os.name:
+
+			case 'posix':
+				path_to_tesseract = config['TesseractPathLinux']
+
+			case 'nt':
+				path_to_tesseract = config['TesseractPathWindows']
+
 		output_path = config['OutputPath']
 		extensions = config['Extensions']
 

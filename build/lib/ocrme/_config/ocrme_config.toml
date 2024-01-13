@@ -1,3 +1,4 @@
-TesseractPath = "C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe"
+TesseractPathLinux = "/usr/bin/tesseract"
+TesseractPathWindows = "C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe"
 OutputPath = "C:\\Users\\-"
 Extensions = [".bmp", ".gif", ".jpg", ".jpeg", ".png"]

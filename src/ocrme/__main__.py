@@ -10,7 +10,7 @@ import tomllib
 def parse_ocrme() -> argparse.Namespace:
 	parser = argparse.ArgumentParser(prog='ocrme', description='OCR tool')
 	parser.add_argument('images', nargs='+', type=str, help='Images to process')
-	parser.add_argument('--noexit', action='store_true', help='Prevents console from closing when done')
+	parser.add_argument('--text', action='store_true', help='Outputs to a text file')
 
 	return parser.parse_args()
 
@@ -47,6 +47,23 @@ def organize_pics(filenames: list[str], extensions: list[str]) -> list[str]:
 
 	return pics
 
+def convert_image(pics: list[str], out: str, text: bool):
+
+	for pic in pics:
+		name = os.path.splitext(os.path.basename(pic))[0]
+		image_to_convert = pytesseract.image_to_string(Image.open(pic))
+
+		if text:
+			save_txt(name, out, image_to_convert)
+
+		yield image_to_convert
+
+def save_txt(name: str, out: str, txt: str):
+
+		with open(os.path.join(out, f'{name}.txt')) as text_file:
+			text_file.write(txt)
+
+
 def main() -> None:
 	default_config = DefaultConfig(Extensions=[".bmp", ".gif", ".jpg", ".jpeg", ".png"])
 	config_path = os.path.join(os.path.expanduser("~"), ".config", "ocrme")
@@ -72,13 +89,8 @@ def main() -> None:
 	args = parse_ocrme()
 	pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 	pics = organize_pics(args.images, extensions)
-
-	for pic in pics:
-		image_to_convert = pytesseract.image_to_string(Image.open(pic))
-		name = os.path.splitext(os.path.basename(pic))[0]
-
-		with open(os.path.join(output_path, f'{name}.txt')) as text_file:
-			text_file.write(image_to_convert)
+	text = True if args.text else False
+	next(convert_image(pics, output_path, text))
 
 if __name__ == '__main__':
 	main()

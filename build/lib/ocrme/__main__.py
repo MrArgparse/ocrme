@@ -47,22 +47,11 @@ def organize_pics(filenames: list[str], extensions: list[str]) -> list[str]:
 
 	return pics
 
-def convert_image(pics: list[str], out: str, text: bool):
-
-	for pic in pics:
-		name = os.path.splitext(os.path.basename(pic))[0]
-		image_to_convert = pytesseract.image_to_string(Image.open(pic))
-
-		if text:
-			save_txt(name, out, image_to_convert)
-
-		yield image_to_convert
-
 def save_txt(name: str, out: str, txt: str):
+	path = os.path.join(out, f'{name}.txt')
 
-		with open(os.path.join(out, f'{name}.txt')) as text_file:
-			text_file.write(txt)
-
+	with open(path, 'w') as text_file:
+		text_file.write(txt)
 
 def main() -> None:
 	default_config = DefaultConfig(Extensions=[".bmp", ".gif", ".jpg", ".jpeg", ".png"])
@@ -89,8 +78,15 @@ def main() -> None:
 	args = parse_ocrme()
 	pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 	pics = organize_pics(args.images, extensions)
-	text = True if args.text else False
-	next(convert_image(pics, output_path, text))
+
+	for pic in pics:
+		name = os.path.splitext(os.path.basename(pic))[0]
+		image_to_convert = pytesseract.image_to_string(Image.open(pic))
+
+		if args.text:
+			save_txt(name, output_path, image_to_convert)
+
+		print(image_to_convert)
 
 if __name__ == '__main__':
 	main()

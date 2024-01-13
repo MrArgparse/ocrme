@@ -1,16 +1,16 @@
-Install with pip install git+https://github.com/MrArgparse/ocrme.git
+Install with `pip install git+https://github.com/MrArgparse/ocrme.git`
 
-Uninstall with pip uninstall ocrme and delete the .config/ocrme folder in your home directory.
+Uninstall with `pip uninstall ocrme` and delete the `.config/ocrme` folder in your home directory.
 
-Convert an image on the terminal by doing ocrme 'test.png'
+Convert an image on the terminal by doing `ocrme 'test.png'`
 
-Save it to a text file as well by using ocrme 'test.png' --text
+Save it to a text file as well by using `ocrme 'test.png' --text`
 
 The default path for tesseract on Windows inside the config file is:
-'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'
+`'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'`
 
 For linux default path for tesseract on Linux inside the config file is:
-'/usr/bin/tesseract'
+`'/usr/bin/tesseract'`
 
 Make sure it is installed and feel free to change these values if you installed in somewhere else than the default directory.
 

@@ -7,3 +7,4 @@ src/ocrme.egg-info/dependency_links.txt
 src/ocrme.egg-info/entry_points.txt
 src/ocrme.egg-info/requires.txt
 src/ocrme.egg-info/top_level.txt
+src/ocrme/_config/ocrme_config.toml

@@ -22,4 +22,4 @@ People on linux will have to export the path of tesseract ocr in their .bashrc
 
 Example (location may vary):
 
-[code]export PATH="/usr/bin/tesseract:$PATH"[/code]
+`export PATH="/usr/bin/tesseract:$PATH"`

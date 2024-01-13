@@ -7,7 +7,7 @@ Convert an image on the terminal by doing `ocrme 'test.png'`
 Save it to a text file as well by using `ocrme 'test.png' --text`
 
 The default path for tesseract on Windows inside the config file is:
-`'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'`
+`'C:/Users/USERNAME/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'`
 
 For linux default path for tesseract on Linux inside the config file is:
 `'/usr/bin/tesseract'`

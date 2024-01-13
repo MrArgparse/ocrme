@@ -1,0 +1,2 @@
+[console_scripts]
+ocrme = ocrme.__main__:main

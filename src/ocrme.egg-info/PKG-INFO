@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: ocrme
+Version: 0.0.1
+Summary: Turn images to text
+Author-email: brokedarius <-@-.org>
+Maintainer-email: brokedarius <-@-.org>
+Keywords: ocr,images,text
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pillow
+Requires-Dist: pytesseract
+Requires-Dist: tomlkit

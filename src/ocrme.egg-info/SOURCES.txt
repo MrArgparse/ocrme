@@ -1,0 +1,9 @@
+pyproject.toml
+src/ocrme/__init__.py
+src/ocrme/__main__.py
+src/ocrme.egg-info/PKG-INFO
+src/ocrme.egg-info/SOURCES.txt
+src/ocrme.egg-info/dependency_links.txt
+src/ocrme.egg-info/entry_points.txt
+src/ocrme.egg-info/requires.txt
+src/ocrme.egg-info/top_level.txt

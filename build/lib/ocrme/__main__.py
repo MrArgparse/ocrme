@@ -18,7 +18,7 @@ def parse_ocrme() -> argparse.Namespace:
 @dataclasses.dataclass(kw_only=True)
 class DefaultConfig:
 	TesseractPathLinux: str = '/usr/bin/tesseract'
-	TesseractPathWindows: str = 'C:/Users/-/AppData/Local/Programs/Tesseract-OCR/tesseract.exe'
+	TesseractPathWindows: str = os.path.join(os.path.expanduser('~'), 'AppData/Local/Programs/Tesseract-OCR/tesseract.exe')
 	OutputPath: str = os.path.expanduser('~')
 	Extensions: list[str] = dataclasses.field(default_factory=list)
 
